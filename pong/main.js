@@ -34,6 +34,11 @@
 })();
 
 // ejecutar cuando sale la ventana
-function main(){
+window.addEventListener("load",main);
 
+function main(){
+    //instancio un objeto de la clase board
+    var board = new board(800,400);
+    var canvas = document.getElementById('canvas',board);
+    var BoardView = new BoardView();
 }
