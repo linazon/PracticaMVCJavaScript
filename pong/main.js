@@ -27,7 +27,7 @@
         this.canvas = canvas;
         this.canvas.width = board.width; //le asigno el tamaño al canva
         this.canvas.height = board.height;
-        this.board = board;
+        this.Board = board;
         this.ctx = canvas.getContext("2d")// usa el getcontext propio del canvas y se lo asigna al objet ctx
     
     }
@@ -38,7 +38,7 @@ window.addEventListener("load",main);
 
 function main(){
     //instancio un objeto de la clase board
-    var board = new board(800,400);
-    var canvas = document.getElementById('canvas',board);
-    var BoardView = new BoardView();
+    var board = new Board(1000,200);
+    var canvas = document.getElementById('canvas');
+    var boardView = new BoardView(canvas,board);
 }
