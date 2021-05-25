@@ -1,6 +1,6 @@
 //creo mi tablero 
 (function(){
-    var self.Board = function(width,height){
+     self.Board = function(width,height){
         this.width = width;
         this.height = height; //tamaño tablero
         this.playing = false; // var bool, si esta jugando
@@ -22,7 +22,18 @@
 })();
 
 // clase para dibujar el tablero
+(function(){
+    self.BoardView = function(canvas,board){
+        this.canvas = canvas;
+        this.canvas.width = board.width; //le asigno el tamaño al canva
+        this.canvas.height = board.height;
+        this.board = board;
+        this.ctx = canvas.getContext("2d")// usa el getcontext propio del canvas y se lo asigna al objet ctx
+    
+    }
+})();
 
+// ejecutar cuando sale la ventana
 function main(){
 
 }
