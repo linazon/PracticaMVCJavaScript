@@ -7,6 +7,7 @@
         this.game_over = false; // var bool, si perdio
         this.bars = [];
         this.ball = null;
+        this.playing = false;
     }
 
     // modificar el prototipo para agregar los metodos
@@ -94,9 +95,11 @@
             };
         },
         play: function(){
-           this.clean();
-           this.draw();  
-           this.board.ball.move();
+            if(this.board.playing){
+                this.clean();
+                this.draw();  
+                this.board.ball.move();
+            }
         }
     }
 
@@ -130,18 +133,24 @@ var ball = new Ball(350,150,10,board);
 
 //ejecuto las funciones up y down, según se oprima las teclas
 document.addEventListener("keydown",function(ev){
-    ev.preventDefault()
-    console.log(ev.keyCode);
+    
     if(ev.keyCode == 38){
+        ev.preventDefault();
         bar.up();
     }else if(ev.keyCode ==40){
+        ev.preventDefault();
         bar.down();
     }else if(ev.keyCode === 87){
-         bar_2.up();
+        ev.preventDefault();
+        bar_2.up();
         //w
     }else if(ev.keyCode === 83){
+        ev.preventDefault();
         bar_2.down();
         //s
+    }else if(ev.keyCode === 32){
+        ev.preventDefault();
+        board.playing = !board.playing;
     }
 
     console.log(""+bar_2);
@@ -150,10 +159,13 @@ document.addEventListener("keydown",function(ev){
 // ejecutar cuando sale la ventana
 //self.addEventListener("load",main);
 
+board_View.draw();
+
 window.requestAnimationFrame(controller);
-setTimeout(function(){
-    ball.direction = -1;
-},4000);
+//setTimeout(function(){
+   // ball.direction = -1;
+//},4000);
+
 function controller(){
     //board_View.clean();
     //board_View.draw();
