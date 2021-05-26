@@ -34,6 +34,16 @@
         //le aviso al canvas que voy a dibujar un rectangulo
         this.kind ="rectangle";
     }
+
+    self.Board.prototype ={
+    // funciones para mover la barra
+    down: function(){
+
+    },
+    up: function(){
+        
+    }   
+    }
 })();
 
 // clase para dibujar el tablero
