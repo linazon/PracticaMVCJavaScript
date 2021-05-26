@@ -33,6 +33,7 @@
         this.board.bars.push(this);
         //le aviso al canvas que voy a dibujar un rectangulo
         this.kind ="rectangle";
+        this.speed = 10; //define el atributo para la velocidad de las barras
     }
 
     self.Bar.prototype ={
