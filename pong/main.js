@@ -14,7 +14,7 @@
         //agregar objeto json
         get elements(){
             // me trae los elementos (bars)
-            var elements = this.bars; // barras laterales del juego
+            var elements = this.bars.map(function(bar){return bar;}); // barras laterales del juego
             elements.push(this.ball);
             return elements;
         }
@@ -30,9 +30,16 @@
         this.speed_y = 0;
         this.speed_x = 3;
         this.board = board;
+        this.direction = 1;
 
         board.ball = this;
         this.kind = "circle";
+    }
+    self.Ball.prototype ={
+        move: function(){
+            this.x += (this.speed_x * this.direction);
+            this.y += (this.speed_y);
+        }
     }
 })();
 
@@ -89,6 +96,7 @@
         play: function(){
            this.clean();
            this.draw();  
+           this.board.ball.move();
         }
     }
 
@@ -112,8 +120,8 @@
 })();
 
 var board = new Board(800,400);
-var bar = new Bar(20,150,40,100,board);
-var bar_2 = new Bar(740,150,40,100,board);
+var bar_2 = new Bar(20,150,40,100,board);
+var bar = new Bar(740,150,40,100,board);
 var limite = new Bar(50,10,700,10,board);
 var limite = new Bar(50,380,700,10,board);
 var canvas = document.getElementById('canvas');
@@ -143,7 +151,9 @@ document.addEventListener("keydown",function(ev){
 //self.addEventListener("load",main);
 
 window.requestAnimationFrame(controller);
-
+setTimeout(function(){
+    ball.direction = -1;
+},4000);
 function controller(){
     //board_View.clean();
     //board_View.draw();
