@@ -15,7 +15,7 @@
         get elements(){
             // me trae los elementos (bars)
             var elements = this.bars; // barras laterales del juego
-            elements.push(this.ball);
+            //elements.push(this.ball);
             return elements;
         }
     }
@@ -71,13 +71,13 @@
 
     //dibuja las barras en el tablero
     function draw(ctx,element){
-        if(element !== null && element.hasOwnProperty("kind")){
+        //if(element !== null && element.hasOwnProperty("kind")){
             switch(element.kind){
                 case "rectangle":
                     ctx.fillRect(element.x, element.y, element.width, element.height);
                 break;
             }
-        }
+        //}
         
     }
 })();
@@ -90,11 +90,9 @@ var limite = new Bar(50,380,700,10,board);
 var canvas = document.getElementById('canvas');
 var board_View = new BoardView(canvas,board);
 
-//pide ejecutar cada 100ms
-setInterval(main,100);
-
 //ejecuto las funciones up y down, según se oprima las teclas
 document.addEventListener("keydown",function(ev){
+    ev.preventDefault()
     console.log(ev.keyCode);
     if(ev.keyCode == 38){
         bar.up();
@@ -112,8 +110,11 @@ document.addEventListener("keydown",function(ev){
 });
 
 // ejecutar cuando sale la ventana
-self.addEventListener("load",main);
+//self.addEventListener("load",main);
 
-function main(){
+window.requestAnimationFrame(controller);
+
+function controller(){
     board_View.draw();
+    window.requestAnimationFrame(controller);
 }
