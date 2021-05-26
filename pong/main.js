@@ -37,13 +37,16 @@
     }
 
     self.Bar.prototype ={
-    // funciones para mover la barra
-    down: function(){
-        this.y += speed;
-    },
-    up: function(){
-        this.y -= speed;
-    }   
+        // funciones para mover la barra
+        down: function(){
+            this.y += this.speed;
+        },
+        up: function(){
+            this.y -= this.speed;
+        },
+        toString: function(){
+            return "x: " +this.x+ "y: " +this.y;
+        }
     }
 })();
 
@@ -61,7 +64,6 @@
         draw: function(){
             for (var i = this.board.elements.length -1; i>= 0; i--){
                 var el = this.board.elements[i];
-
                 draw(this.ctx,el);
             };
         }
@@ -80,6 +82,15 @@
     }
 })();
 
+var board = new Board(800,400);
+var bar = new Bar(20,100,40,100,board);
+var bar = new Bar(740,100,40,100,board);
+var limite = new Bar(50,10,700,10,board);
+var limite = new Bar(50,380,700,10,board);
+var canvas = document.getElementById('canvas');
+var board_View = new BoardView(canvas,board);
+
+//ejecuto las funciones up y down, según se oprima las teclas
 document.addEventListener("keydown",function(ev){
     console.log(ev.keyCode);
     if(ev.keyCode == 38){
@@ -87,21 +98,14 @@ document.addEventListener("keydown",function(ev){
     }else if(ev.keyCode ==40){
         bar.down();
     }
+
+    console.log(""+bar);
 });
 
 // ejecutar cuando sale la ventana
 self.addEventListener("load",main);
 
 function main(){
-    //instancio un objeto de la clase board
-    var board = new Board(800,400);
-    var bar = new Bar(20,100,40,100,board);
-    var bar = new Bar(740,100,40,100,board);
-    var limite = new Bar(50,10,700,10,board);
-    var limite = new Bar(50,380,700,10,board);
-    var canvas = document.getElementById('canvas');
-    var board_View = new BoardView(canvas,board);
-
     console.log(board);
     board_View.draw();
 }
