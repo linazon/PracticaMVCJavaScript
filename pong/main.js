@@ -39,10 +39,10 @@
     self.Bar.prototype ={
     // funciones para mover la barra
     down: function(){
-
+        this.y += speed;
     },
     up: function(){
-
+        this.y -= speed;
     }   
     }
 })();
@@ -79,6 +79,15 @@
         
     }
 })();
+
+document.addEventListener("keydown",function(ev){
+    console.log(ev.keyCode);
+    if(ev.keyCode == 38){
+        bar.up();
+    }else if(ev.keyCode ==40){
+        bar.down();
+    }
+});
 
 // ejecutar cuando sale la ventana
 self.addEventListener("load",main);
