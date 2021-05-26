@@ -83,12 +83,15 @@
 })();
 
 var board = new Board(800,400);
-var bar = new Bar(20,100,40,100,board);
-var bar = new Bar(740,100,40,100,board);
+var bar = new Bar(20,150,40,100,board);
+var bar_2 = new Bar(740,150,40,100,board);
 var limite = new Bar(50,10,700,10,board);
 var limite = new Bar(50,380,700,10,board);
 var canvas = document.getElementById('canvas');
 var board_View = new BoardView(canvas,board);
+
+//pide ejecutar cada 100ms
+setInterval(main,100);
 
 //ejecuto las funciones up y down, según se oprima las teclas
 document.addEventListener("keydown",function(ev){
@@ -97,15 +100,20 @@ document.addEventListener("keydown",function(ev){
         bar.up();
     }else if(ev.keyCode ==40){
         bar.down();
+    }else if(ev.keyCode === 87){
+         bar_2.up();
+        //w
+    }else if(ev.keyCode === 83){
+        bar_2.down();
+        //s
     }
 
-    console.log(""+bar);
+    console.log(""+bar_2);
 });
 
 // ejecutar cuando sale la ventana
 self.addEventListener("load",main);
 
 function main(){
-    console.log(board);
     board_View.draw();
 }
