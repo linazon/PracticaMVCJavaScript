@@ -21,6 +21,21 @@
     }
 })();
 
+//dibujar las barras
+(function(){
+    self.Bar = function(x,y,width,height,board){
+        this.x= x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.board = board;
+        //traigo el objeto board, luego el arreglo bars y con push le agrego el objeto bar (misma funcion)
+        this.board.bars.push(this);
+        //le aviso al canvas que voy a dibujar un rectangulo
+        this.kind ="rectangle";
+    }
+})();
+
 // clase para dibujar el tablero
 (function(){
     self.BoardView = function(canvas,board){
