@@ -87,6 +87,8 @@ function main(){
     var board = new Board(800,400);
     var bar = new Bar(20,100,40,100,board);
     var bar = new Bar(740,100,40,100,board);
+    var limite = new Bar(50,10,700,10,board);
+    var limite = new Bar(50,380,700,10,board);
     var canvas = document.getElementById('canvas');
     var board_View = new BoardView(canvas,board);
 
