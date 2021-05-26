@@ -10,12 +10,12 @@
     }
 
     // modificar el prototipo para agregar los metodos
-    self.Board.prototype ={
+    self.Board.prototype = {
         //agregar objeto json
         get elements(){
             // me trae los elementos (bars)
             var elements = this.bars; // barras laterales del juego
-            elements.push(ball);
+            elements.push(this.ball);
             return elements;
         }
     }
@@ -35,13 +35,13 @@
         this.kind ="rectangle";
     }
 
-    self.Board.prototype ={
+    self.Bar.prototype ={
     // funciones para mover la barra
     down: function(){
 
     },
     up: function(){
-        
+
     }   
     }
 })();
@@ -52,18 +52,44 @@
         this.canvas = canvas;
         this.canvas.width = board.width; //le asigno el tamaño al canva
         this.canvas.height = board.height;
-        this.Board = board;
-        this.ctx = canvas.getContext("2d")// usa el getcontext propio del canvas y se lo asigna al objet ctx
-    
+        this.board = board;
+        this.ctx = canvas.getContext("2d");// usa el getcontext propio del canvas y se lo asigna al objet ctx
+    }
+
+    self.BoardView.prototype = {
+        draw: function(){
+            for (var i = this.board.elements.length -1; i>= 0; i--){
+                var el = this.board.elements[i];
+
+                draw(this.ctx,el);
+            };
+        }
+    }
+
+    //dibuja las barras en el tablero
+    function draw(ctx,element){
+        if(element !== null && element.hasOwnProperty("kind")){
+            switch(element.kind){
+                case "rectangle":
+                    ctx.fillRect(element.x, element.y, element.width, element.height);
+                break;
+            }
+        }
+        
     }
 })();
 
 // ejecutar cuando sale la ventana
-window.addEventListener("load",main);
+self.addEventListener("load",main);
 
 function main(){
     //instancio un objeto de la clase board
-    var board = new Board(1000,200);
+    var board = new Board(800,400);
+    var bar = new Bar(20,100,40,100,board);
+    var bar = new Bar(740,100,40,100,board);
     var canvas = document.getElementById('canvas');
-    var boardView = new BoardView(canvas,board);
+    var board_View = new BoardView(canvas,board);
+
+    console.log(board);
+    board_View.draw();
 }
