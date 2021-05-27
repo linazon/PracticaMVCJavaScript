@@ -3,7 +3,6 @@
      self.Board = function(width,height){
         this.width = width;
         this.height = height; //tamaño tablero
-        this.playing = false; // var bool, si esta jugando
         this.game_over = false; // var bool, si perdio
         this.bars = [];
         this.ball = null;
@@ -108,7 +107,6 @@
 
     self.BoardView.prototype = {
         clean: function(){
-            //console.log(":p")
             this.ctx.clearRect(0,0,this.board.width,this.board.height);
         },
         draw: function(){
